@@ -52,23 +52,15 @@ server.listen(port);
 /**
  * SCRAM
  */
-mongoose
-  .connect('mongodb+srv://admin:admin@cluster0.vqggq.mongodb.net/Workshop/', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    dbName: 'Workshop',
-  })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-/*  mongoose
+mongoose
  .connect('mongodb+srv://admin:admin@cluster0.6msgl.mongodb.net/CesiEat/', {
    useNewUrlParser: true,
    useUnifiedTopology: true,
    dbName: 'CesiEat',
  })
  .then(() => console.log('Connexion à MongoDB réussie !'))
- .catch(() => console.log('Connexion à MongoDB échouée !')); */
+ .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 mongoose.connection.on('connected', function () {
   console.log('database is ready now');
