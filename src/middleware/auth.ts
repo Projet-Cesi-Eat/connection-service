@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
+const MWjwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
+module.exports = (req: any, res: any, next: any) => {
     try{
         const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'SECRET_RANDOM_STRING');
+        const decodedToken = MWjwt.verify(token, 'SECRET_RANDOM_STRING');
         const userId = decodedToken.userId;
         if (req.body.userId && req.body.userId !== userId) {
             throw 'Invalid user ID';
