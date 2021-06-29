@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { database } from './config/database';
 
 const http = require('http');
 const app = require('./app');
@@ -49,22 +50,7 @@ server.on('listening', () => {
 
 server.listen(port);
 
-/**
- * SCRAM
- */
-
-mongoose
- .connect('mongodb+srv://admin:admin@cluster0.6msgl.mongodb.net/CesiEat/', {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
-   dbName: 'CesiEat',
- })
- .then(() => console.log('Connexion à MongoDB réussie !'))
- .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-mongoose.connection.on('connected', function () {
-  console.log('database is ready now');
-});
-mongoose.connection.on('disconnected', function () {
-  console.log('database is disconnected');
-});
+database
+  .authenticate()
+  .then(() => console.log('SQL Server connection established'))
+  .catch(() => console.log('SQL Server connection failed'));
