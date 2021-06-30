@@ -1,6 +1,3 @@
-// const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
-const User = require('../Schema/user');
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { Users, UsersInterface } from '../models/users';
@@ -66,7 +63,7 @@ export class ConnectionService {
               { where: { id_user: user.id_user } }
             ).then(() =>
               res.status(200).json({
-                id_user: user._id,
+                user: user,
                 token: token,
               })
             );
