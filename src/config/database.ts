@@ -1,20 +1,20 @@
 /**
  * Sequelize connection to SQL Server
  */
-import {Sequelize} from "sequelize";
+import { Sequelize } from 'sequelize';
 
 const userName = 'sa';
-const password = 'P@ssword1'; // update me
+const password = 'P@ssword1';
 const hostName = 'localhost';
 const sampleDbName = 'CesiEat';
 
 export const database = new Sequelize(sampleDbName, userName, password, {
   dialect: 'mssql',
   host: hostName,
-  port: 1433, // Default port
-  logging: false, // disable logging; default: console.log
+  port: 1433,
+  logging: false,
 
   dialectOptions: {
-      requestTimeout: 30000 // timeout = 30 seconds
-  }
+    requestTimeout: 30000,
+  },
 });
