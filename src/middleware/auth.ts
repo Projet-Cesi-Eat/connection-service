@@ -4,9 +4,13 @@ module.exports = (req: any, res: any, next: any) => {
     try{
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = MWjwt.verify(token, 'SECRET_RANDOM_STRING');
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) {
+        const id_user = decodedToken.id_user;
+        const role_user = decodedToken.role_user;
+        if (req.body.id_user && req.body.id_user !== id_user) {
             throw 'Invalid user ID';
+        }
+        else if (req.body.role && req.body.role_user !== role_user) {
+            throw 'You are not authorized to make this request';
         } else {
             next();
         }

@@ -20,6 +20,7 @@ export class ConnectionService {
         sponsor: 0,
         sponsorised: 0,
         token: '0',
+        id_role: 1,
       };
 
       Users.create(params)
@@ -54,10 +55,10 @@ export class ConnectionService {
               });
             }
             const token = jwt.sign(
-              { id_user: user.id_user },
+              { id_user: user.id_user, role_user: user.role_user},
               'SECRET_RANDOM_STRING',
               {
-                expiresIn: '1h',
+                expiresIn: '10h',
               }
             );
             Users.update(
