@@ -55,7 +55,7 @@ export class ConnectionService {
               });
             }
             const token = jwt.sign(
-              { id_user: user.id_user, role_user: user.role_user},
+              { id_user: user.id_user, role_user: user.role_user },
               'SECRET_RANDOM_STRING',
               {
                 expiresIn: '7d',
@@ -65,15 +65,17 @@ export class ConnectionService {
               { token: token },
               { where: { id_user: user.id_user } }
             ).then(() =>
-              /*res.status(200).json({
-                id_user: user._id,
-                token: token,
-              })*/
-              res.cookie('token', token, {
-                expires: new Date(Date.now() + 604800000),
-                secure: false, // set to true if your using https
-                httpOnly: true,
-              })
+              res
+                .status(200)
+                .cookie('token', token, {
+                  expires: new Date(Date.now() + 604800000),
+                  secure: false, // set to true if your using https
+                  httpOnly: true,
+                })
+                .json({
+                  id_user: user._id,
+                  token: token,
+                })
             );
           })
           .catch((error: any) => {
