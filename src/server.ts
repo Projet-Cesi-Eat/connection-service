@@ -50,7 +50,4 @@ server.on('listening', () => {
 
 server.listen(port);
 
-database
-  .authenticate()
-  .then(() => console.log('SQL Server connection established'))
-  .catch(() => console.log('SQL Server connection failed'));
+database.authenticate();
